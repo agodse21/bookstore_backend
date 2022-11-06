@@ -5,6 +5,7 @@ const {UsersRouter}=require("./Routes/user.route");
 const {BooksRouter}=require("./Routes/book.route")
 const app=express();
 require("dotenv").config();
+const PORT=process.env.PORT || 8080
 
 app.use(express.json());
 app.use(cors())
@@ -17,7 +18,7 @@ app.use("/books",BooksRouter);
 app.get("/",(req,res)=>{
     res.send("home")
 })
-app.listen(process.env.PORT,async()=>{
+app.listen(PORT,async()=>{
     try{
         await connection;
         console.log("Connected to db Successfully")
@@ -25,5 +26,5 @@ app.listen(process.env.PORT,async()=>{
         console.log("error to connecting");
         console.log(err)
     }
-    console.log(`Lising on port ${process.env.PORT}`)
+    console.log(`Lising on port ${PORT}`)
 })
